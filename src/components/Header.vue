@@ -16,10 +16,31 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Board</a>
+            <a
+              v-if="isLogged"
+              @click="all"
+              class="nav-link active"
+              aria-current="page"
+              >All</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a
+              v-if="isLogged"
+              @click="completed"
+              class="nav-link active"
+              aria-current="page"
+              >Completed</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              v-if="isLogged"
+              @click="running"
+              class="nav-link active"
+              aria-current="page"
+              >Running</a
+            >
           </li>
         </ul>
         <router-link
@@ -60,6 +81,22 @@ export default {
         console.log(e);
       }
     },
+    all() {
+      this.$router.replace('/tasks/all');
+    },
+    completed() {
+      this.$router.replace('/tasks/complete');
+    },
+    running() {
+      this.$router.replace('/tasks/running');
+    },
   },
 };
 </script>
+
+<style scoped>
+a {
+  cursor: pointer;
+  margin: 0 1rem;
+}</style
+>>
