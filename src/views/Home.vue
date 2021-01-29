@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container text-white">
     <div class="row align-items-center">
       <div class="md-col-6 sm-col-12 mx-auto py-4 ">
         <div

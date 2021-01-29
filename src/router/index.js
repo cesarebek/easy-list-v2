@@ -26,14 +26,17 @@ const router = createRouter({
         {
           path: 'all',
           component: AllTasks,
+          name: 'All',
         },
         {
           path: 'complete',
           component: CompleteTasks,
+          name: 'Completed',
         },
         {
           path: 'running',
           component: RunningTasks,
+          name: 'Running',
         },
       ],
     },

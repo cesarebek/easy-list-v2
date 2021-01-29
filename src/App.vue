@@ -1,6 +1,8 @@
 <template>
-  <Header />
-  <router-view />
+  <div class="background pb-5">
+    <Header />
+    <router-view />
+  </div>
 </template>
 
 <script>
@@ -13,3 +15,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.background {
+  background: linear-gradient(-45deg, #d7499d, #2c1974);
+  min-height: 100vh;
+}
+</style>

@@ -8,11 +8,15 @@ const store = createStore({
     user: null,
     token: null,
     tasks: [],
+    isLoading: false,
   },
   //------------------------------------------//
   getters: {
     isLogged(state) {
       return !!state.token;
+    },
+    isLoading(state) {
+      return state.isLoading;
     },
     user(state) {
       return state.user;
@@ -41,6 +45,10 @@ const store = createStore({
     //Setting Tasks
     setTasks(state, payload) {
       state.tasks = payload.tasks;
+    },
+    //Setting Loading
+    setLoading(state, payload) {
+      state.isLoading = payload.state;
     },
   },
   //------------------------------------------//
@@ -73,7 +81,7 @@ const store = createStore({
         token: res.data.token,
       });
       localStorage.setItem('access_token', res.data.token);
-      localStorage.setItem('user', res.data.data);
+      localStorage.setItem('user', JSON.stringify(res.data.data));
       router.replace('/tasks/all');
       console.log('User registered!');
     },
@@ -102,10 +110,12 @@ const store = createStore({
     //Tasks
     async tasks({ commit, state }) {
       Axios.defaults.headers.common['Authorization'] = 'Bearer ' + state.token;
+      commit('setLoading', { state: true });
       const res = await Axios.get('http://127.0.0.1:8000/api/tasks');
       commit('setTasks', {
         tasks: res.data.data,
       });
+      commit('setLoading', { state: false });
       console.log(res.data);
     },
 
@@ -116,7 +126,32 @@ const store = createStore({
       });
       dispatch('tasks');
     },
+
+    //Update Task
+    async updateTask({ dispatch }, payload) {
+      await axios.put(`task/${payload.id}`, {
+        title: payload.title,
+        description: payload.description,
+      });
+      dispatch('tasks');
+    },
+
+    //Add Task
+    async addTask({ dispatch }, payload) {
+      await axios.post('task/store', {
+        title: payload.title,
+        description: payload.description,
+      });
+      dispatch('tasks');
+    },
+
+    //Delete Task
+    async deleteTask({ dispatch }, payload) {
+      await axios.delete(`task/${payload.id}`);
+      dispatch('tasks');
+    },
   },
+
   modules: {},
 });
 

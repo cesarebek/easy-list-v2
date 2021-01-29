@@ -35,12 +35,22 @@
               />
               <label for="password">Password</label>
             </div>
+            <div class="form-floating mb-3">
+              <input
+                class="form-control"
+                type="password"
+                id="passwordMatch"
+                placeholder="Confirm password"
+                v-model.trim="passwordMatch"
+              />
+              <label for="password">Confirm password</label>
+            </div>
             <button class="btn btn-success d-grid col-12  mx-auto">
               Signup
             </button>
           </form>
           <div class="alert alert-danger" role="alert" v-if="message">
-            {{ message.error }}
+            {{ message.error || message }}
           </div>
         </div>
       </div>
@@ -55,11 +65,17 @@ export default {
       name: '',
       email: '',
       password: '',
+      passwordMatch: '',
       message: null,
     };
   },
+
   methods: {
     async signup() {
+      if (this.password !== this.passwordMatch) {
+        this.message = "Password does't match with the confirmed one.";
+        return;
+      }
       this.message = null;
       try {
         await this.$store.dispatch('signUp', {

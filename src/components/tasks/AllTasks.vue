@@ -1,9 +1,10 @@
 <template>
-  <div class="mx-3">
-    <h1 v-if="isLoading">Loading...</h1>
-    <div v-else>
+  <div class="dush-background rounded pb-3">
+    <h1 class="p-4 p-md-5">{{ activeTask }} Tasks</h1>
+    <!-- <div v-if="isLoading" class="spinner-border m-5" role="status"></div> -->
+    <div class="row flex-wrap mx-4 mx-md-5 g-2">
       <Task
-        class="mb-3"
+        class="col-md-6"
         v-for="task in tasks"
         :key="task.id"
         :title="task.title"
@@ -12,21 +13,37 @@
         :id="task.id"
       />
     </div>
-    <div v-if="tasks.length === 0" class="alert alert-primary" role="alert">
+    <div
+      v-if="tasks.length === 0 && !isLoading"
+      class="alert alert-primary mx-5"
+      role="alert"
+    >
       Hey {{ user.name }}, let's start use Easy-List adding your first task!
     </div>
+    <AddTask
+      class="mx-auto"
+      @click="openInput"
+      @close-dialog="isOpen = false"
+      :isOpen="isOpen"
+    />
   </div>
 </template>
 
 <script>
 import Task from '@/components/Task';
+import AddTask from '@/components/AddTask';
 
 export default {
-  components: { Task },
+  components: { Task, AddTask },
   data() {
     return {
-      isLoading: false,
+      isOpen: false,
     };
+  },
+  methods: {
+    openInput() {
+      this.isOpen = true;
+    },
   },
   computed: {
     tasks() {
@@ -35,6 +52,18 @@ export default {
     user() {
       return JSON.parse(localStorage.getItem('user'));
     },
+    isLoading() {
+      return this.$store.getters.isLoading;
+    },
+    activeTask() {
+      return this.$route.name;
+    },
   },
 };
 </script>
+
+<style scoped>
+.dush-background {
+  background-color: #ebecf0;
+}
+</style>
