@@ -4,7 +4,7 @@
       <div class="md-col-6 sm-col-12 mx-auto py-4 ">
         <div class="d-flex justify-content-center">
           <div
-            class="d-flex justify-content-center flex-column home-bg p-5 rounded shadow"
+            class="d-flex justify-content-center flex-column home-bg p-5 shadow"
           >
             <img :src="logo" class="my-width mb-5 mx-auto d-block" alt="logo" />
             <h2 class="card-title mb-2 text-center">
@@ -54,5 +54,6 @@ img {
 }
 .home-bg {
   background-color: #ffff;
+  border-radius: 2rem;
 }
 </style>

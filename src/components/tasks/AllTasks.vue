@@ -1,10 +1,10 @@
 <template>
-  <div class="dush-background rounded pb-3">
+  <div class="dush-background pb-3">
     <h1 class="p-4 p-md-5">{{ activeTask }} Tasks</h1>
-    <!-- <div v-if="isLoading" class="spinner-border m-5" role="status"></div> -->
-    <div class="row flex-wrap mx-4 mx-md-5 g-2">
+    <div v-if="isLoading" class="spinner-border mx-auto" role="status"></div>
+    <div v-else class="row flex-wrap mx-4 mx-md-5 gy-2 justify-content-evenly">
       <Task
-        class="col-md-6"
+        class="col-md-5"
         v-for="task in tasks"
         :key="task.id"
         :title="task.title"
@@ -18,7 +18,7 @@
       class="alert alert-primary mx-5"
       role="alert"
     >
-      Hey {{ user.name }}, let's start use Easy-List adding your first task!
+      Hey {{ user.name }}, let's start use Todo adding your first task!
     </div>
     <AddTask
       class="mx-auto"
@@ -65,5 +65,6 @@ export default {
 <style scoped>
 .dush-background {
   background-color: #ebecf0;
+  border-radius: 1rem;
 }
 </style>

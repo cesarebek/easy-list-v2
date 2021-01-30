@@ -1,6 +1,6 @@
 <template>
   <div class="container ">
-    <div class="col-6 mx-auto mt-5">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5 mx-auto mt-5">
       <div class="card shadow">
         <div class="card-body border">
           <h2 class="card-title">Signup for Free</h2>
@@ -62,21 +62,22 @@
 export default {
   data() {
     return {
-      name: '',
-      email: '',
-      password: '',
-      passwordMatch: '',
+      name: null,
+      email: null,
+      password: null,
+      passwordMatch: null,
       message: null,
     };
   },
 
   methods: {
     async signup() {
-      if (this.password !== this.passwordMatch) {
-        this.message = "Password does't match with the confirmed one.";
-        return;
-      }
       this.message = null;
+      if (this.password !== this.passwordMatch) {
+        return (this.message = "Password does't match with the confirmed one.");
+      } else if (!this.name || !this.email || !this.password) {
+        return (this.message = 'Before signup, please fill all fields.');
+      }
       try {
         await this.$store.dispatch('signUp', {
           name: this.name,

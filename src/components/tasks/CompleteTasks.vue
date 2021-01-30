@@ -1,10 +1,10 @@
 <template>
-  <div class="dush-background pb-4 pb-lg-5 rounded">
+  <div class="dush-background pb-4 pb-lg-5">
     <h1 class="p-4 p-md-5">{{ activeTask }} Tasks</h1>
     <div v-if="isLoading" class="spinner-border m-5" role="status"></div>
-    <div v-else class="row flex-wrap mx-4 mx-md-5 g-2">
+    <div v-else class="row flex-wrap mx-4 mx-md-5 gy-2 justify-content-evenly">
       <Task
-        class="col-md-6"
+        class="col-md-5"
         v-for="task in completeTasks"
         :key="task.id"
         :title="task.title"
@@ -45,5 +45,6 @@ export default {
 <style scoped>
 .dush-background {
   background-color: #ebecf0;
+  border-radius: 1rem;
 }
 </style>

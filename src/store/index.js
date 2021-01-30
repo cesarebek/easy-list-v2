@@ -76,6 +76,7 @@ const store = createStore({
         email: payload.email,
         password: payload.password,
       });
+      console.log(res);
       commit('setUser', {
         user: res.data.data,
         token: res.data.token,

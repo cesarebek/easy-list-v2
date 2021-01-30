@@ -1,5 +1,5 @@
 <template>
-  <div class="card p-3 mb-3">
+  <div class="card p-3 mb-3 glass shadow-sm">
     <div>
       <h3 :class="lineThroughMain">{{ title }}</h3>
       <p :class="lineThroughSub">{{ description }}</p>
@@ -11,7 +11,7 @@
       <button class="btn btn-primary btn-sm ms-1" @click="modalOpen = true">
         Edit
       </button>
-
+      <!-- Modal -->
       <teleport to="body">
         <div v-if="modalOpen" class="modal row">
           <div>
@@ -76,7 +76,7 @@
           </div>
         </div>
       </teleport>
-      <!-- MODALE END TEST -->
+      <!-- End Modal -->
     </div>
   </div>
 </template>
@@ -157,5 +157,13 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.glass {
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+  );
+  border-radius: 1rem;
 }
 </style>

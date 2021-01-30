@@ -3,7 +3,7 @@
     <i class="bi bi-plus-square mx-1"></i>
     Add a card
   </button>
-  <div v-else class="d-flex flex-column col-4">
+  <div v-else class="d-flex flex-column col-8 col-md-6 col-lg-4 col-xl-3">
     <div class="form">
       <input
         v-model="title"

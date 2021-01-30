@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="col-6 mx-auto mt-5">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5 mx-auto mt-5">
       <div class="card shadow">
         <div class="card-body border">
           <h2 class="card-title">Login</h2>
@@ -31,7 +31,7 @@
             </button>
           </form>
           <div class="alert alert-danger" role="alert" v-if="message">
-            {{ message.error }}
+            {{ message }}
           </div>
         </div>
       </div>
@@ -43,25 +43,26 @@
 export default {
   data() {
     return {
-      email: '',
-      password: '',
+      email: null,
+      password: null,
       message: null,
     };
   },
   methods: {
     async login() {
       this.message = null;
+      if (!this.email || !this.password) {
+        return (this.message = 'Before login, please insert the credentials.');
+      }
       try {
         await this.$store.dispatch('login', {
           email: this.email,
           password: this.password,
         });
       } catch (e) {
-        this.message = {
-          error:
-            e.response.data.message ||
-            'Failed to authenticate, please try later.',
-        };
+        this.message =
+          e.response.data.message ||
+          'Failed to authenticate, please try later.';
       }
     },
   },
