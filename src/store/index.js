@@ -120,16 +120,18 @@ const store = createStore({
     },
 
     //Complete Task
-    async completeTask({ dispatch }, payload) {
-      await axios.put(`task/${payload.id}`, {
+    async completeTask({ dispatch, state }, payload) {
+      Axios.defaults.headers.common['Authorization'] = 'Bearer ' + state.token;
+      await Axios.put(`http://127.0.0.1:8000/api/task/${payload.id}`, {
         completed: payload.completed,
       });
       dispatch('tasks');
     },
 
     //Update Task
-    async updateTask({ dispatch }, payload) {
-      await axios.put(`task/${payload.id}`, {
+    async updateTask({ dispatch, state }, payload) {
+      Axios.defaults.headers.common['Authorization'] = 'Bearer ' + state.token;
+      await Axios.put(`http://127.0.0.1:8000/api/task/${payload.id}`, {
         title: payload.title,
         description: payload.description,
       });
@@ -137,17 +139,19 @@ const store = createStore({
     },
 
     //Add Task
-    async addTask({ dispatch }, payload) {
-      await axios.post('task/store', {
+    async addTask({ dispatch, state }, payload) {
+      Axios.defaults.headers.common['Authorization'] = 'Bearer ' + state.token;
+      await Axios.post('http://127.0.0.1:8000/api/task/store', {
         title: payload.title,
-        description: payload.description,
       });
       dispatch('tasks');
     },
 
     //Delete Task
-    async deleteTask({ dispatch }, payload) {
-      await axios.delete(`task/${payload.id}`);
+
+    async deleteTask({ dispatch, state }, payload) {
+      Axios.defaults.headers.common['Authorization'] = 'Bearer ' + state.token;
+      await Axios.delete(`http://127.0.0.1:8000/api/task/${payload.id}`);
       dispatch('tasks');
     },
   },

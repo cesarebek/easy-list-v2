@@ -1,5 +1,5 @@
 <template>
-  <button v-if="!this.isOpen" class="d-flex btn btn-outline-secondary btn-sm">
+  <button v-if="!this.isOpen" class="d-flex btn btn-outline-secondary">
     <i class="bi bi-plus-square mx-1"></i>
     Add a card
   </button>
@@ -36,7 +36,6 @@ export default {
       }
       await this.$store.dispatch('addTask', {
         title: this.title,
-        description: ' ',
       });
       this.title = '';
       this.$emit('closeDialog');

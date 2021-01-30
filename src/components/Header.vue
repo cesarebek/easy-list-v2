@@ -1,7 +1,15 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav
+    class="navbar navbar-expand-lg navbar-dark shadow-sm"
+    style="background-color: rgba(0,0,0,0.1)"
+  >
     <div class="container">
-      <a class="navbar-brand" href="#">Easy List</a>
+      <img
+        :src="logo"
+        style="width:3rem"
+        class="navbar-brand"
+        @click="authorInfo"
+      />
       <button
         class="navbar-toggler"
         type="button"
@@ -67,16 +75,22 @@
 </template>
 
 <script>
+import logo from '@/assets/logo.png';
 export default {
+  data() {
+    return {
+      logo: logo,
+    };
+  },
   computed: {
     isLogged() {
       return this.$store.getters.isLogged;
     },
   },
   methods: {
-    logout() {
+    async logout() {
       try {
-        this.$store.dispatch('logout');
+        await this.$store.dispatch('logout');
       } catch (e) {
         console.log(e);
       }

@@ -13,58 +13,63 @@
       </button>
 
       <teleport to="body">
-        <div v-if="modalOpen" class="modal">
+        <div v-if="modalOpen" class="modal row">
           <div>
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Task Edit</h5>
-                  <button class="btn-close" @click="modalOpen = false"></button>
-                </div>
-                <div class="modal-body">
-                  <div class="form-floating mb-3">
-                    <input
-                      class="form-control"
-                      type="text"
-                      id="title"
-                      placeholder="Email"
-                      v-model.trim="titleUpd"
-                    />
-                    <label for="title">Title</label>
+            <div class="modal-dialog ">
+              <div>
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Task Edit</h5>
+                    <button
+                      class="btn-close"
+                      @click="modalOpen = false"
+                    ></button>
                   </div>
-                  <div class="form-floating mb-3">
-                    <input
-                      class="form-control"
-                      type="text"
-                      id="description"
-                      placeholder="description"
-                      v-model.trim="descriptionUpd"
-                    />
-                    <label for="description">Description</label>
+                  <div class="modal-body">
+                    <div class="form-floating mb-3">
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="title"
+                        placeholder="Email"
+                        v-model.trim="titleUpd"
+                      />
+                      <label for="title">Title</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="description"
+                        placeholder="description"
+                        v-model.trim="descriptionUpd"
+                      />
+                      <label for="description">Description</label>
+                    </div>
                   </div>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary btn-sm"
-                    @click="modalOpen = false"
-                  >
-                    Close
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-success btn-sm"
-                    @click="updateTask"
-                  >
-                    Save changes
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-danger btn-sm"
-                    @click="deleteTask"
-                  >
-                    Delete
-                  </button>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary btn-sm"
+                      @click="modalOpen = false"
+                    >
+                      Close
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-success btn-sm"
+                      @click="updateTask"
+                    >
+                      Save changes
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-danger btn-sm"
+                      @click="deleteTask"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
