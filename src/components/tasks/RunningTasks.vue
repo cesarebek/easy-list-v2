@@ -1,17 +1,18 @@
 <template>
   <div class="dush-background pb-4 pb-lg-5">
     <h1 class="p-4 p-md-5">{{ activeTask }} Tasks</h1>
-    <div v-if="isLoading" class="spinner-border m-5" role="status"></div>
-    <div v-else class="row flex-wrap mx-4 mx-md-5 gy-2 justify-content-evenly">
-      <Task
-        class="col-md-5"
-        v-for="task in runningTasks"
-        :key="task.id"
-        :title="task.title"
-        :description="task.description"
-        :completed="task.completed"
-        :id="task.id"
-      />
+    <div class="row flex-wrap mx-4 mx-md-5 gy-2 justify-content-evenly">
+      <transition-group name="card">
+        <Task
+          class="col-md-5"
+          v-for="task in runningTasks"
+          :key="task.id"
+          :title="task.title"
+          :description="task.description"
+          :completed="task.completed"
+          :id="task.id"
+        />
+      </transition-group>
     </div>
     <div
       v-if="runningTasks.length === 0 && !isLoading"
@@ -49,5 +50,28 @@ export default {
 .dush-background {
   background-color: #ebecf0;
   border-radius: 1rem;
+}
+.card-enter-from {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.9);
+}
+.card-enter-active {
+  transition: all 0.5s ease-out;
+}
+.card-enter-to {
+  opacity: 1;
+  transform: translateY(0px) scale(1);
+}
+
+.card-leave-to {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.9);
+}
+.card-leave-active {
+  transition: all 0.3s ease-in;
+}
+.card-leave-from {
+  opacity: 1;
+  transform: translateY(0px) scale(1);
 }
 </style>
